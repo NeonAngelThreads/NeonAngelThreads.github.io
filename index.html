@@ -1,496 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative Portfolio</title>
-    <style>
-
-        @keyframes color_shift {
-            from  {
-                background-color: green;
-            }
-            0%, 10% {
-                background-color: #1e052a;
-            }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes reverse-spin {
-            0% { transform: translate(-50%, -50%) rotate(360deg); }
-            100% { transform: translate(-50%, -50%) rotate(0deg); }
-        }
-
-        :root {
-            --primary: #FF0080;
-            --secondary: #7928CA;
-            --accent: #46c5ff;
-            --dark: #120024;
-            --darker: #004dc0;
-            --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(180deg, var(--dark) 0%, #2a0a3d 40%, #1a0525 70%, var(--darker) 100%);
-            color: var(--text);
-            overflow-x: clip;
-            min-height: 100vh;
-
-            animation: color_shift 1s linear;
-            animation-timeline: view();
-        }
-
-        /* 滚动条美化 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-
-        /* 导航栏 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background: rgba(18, 0, 36, 0.5);
-            border-bottom: 1px solid var(--glass-border);
-            transition: 0.3s;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* 通用动画类 */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 0 2rem;
-            animation-timeline: view();
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(121, 40, 202, 0.2) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            animation: pulse 5s infinite alternate;
-
-        }
-
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
-        }
-
-        .hero-content h1 {
-            font-size: 5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right bottom, #fff, #ccc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .hero-content h1 span {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            fill: transparent;
-
-            transition: all 1s ease-in-out;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            padding: 1rem 3rem;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 50px;
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.8);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        /* 玻璃卡片通用样式 */
-        .card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow);
-            transition: 0.4s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.3);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
-        }
-
-        /* About Section */
-        .section {
-            padding: 8rem 10%;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            padding: 10px;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(to bottom, #fff, var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .project-desc {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(255,255,255,0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--accent);
-        }
-
-        /* Footer & Turbine Animation */
-        footer {
-            padding: 8rem 0 4rem;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(to bottom, transparent, #000);
-            overflow: hidden;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-        }
-
-        .turbine-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
-            cursor: pointer;
-        }
-
-        .avatar-box {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            z-index: 10;
-            border: 4px solid var(--accent);
-            box-shadow: 0 0 50px #3473cc;
-            position: relative;
-            background: #0cffa1;
-        }
-
-        .avatar-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* 涡轮叶片 - 动态生成 */
-        .turbine-blade {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border-radius: 5%;
-            transform-origin: center;
-            box-shadow: 0 0 30px rgba(121, 40, 202, 0.8);
-            transition: all 0.2s ease;
-        }
-        
-        .turbine-ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1px dashed var(--accent);
-            opacity: 0.3;
-        }
-
-        /* 动态生成的叶片样式，通过JS控制 */
-        .turbine-wrapper {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .outer-ring {
-            width: 280px;
-            height: 280px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-left: 2px solid var(--accent);
-            border-right: 2px solid var(--primary);
-            border-radius: 50%;
-            position: absolute;
-            animation: reverse-spin 15s linear infinite;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            border: 1px solid var(--glass-border);
-            transition: 0.3s;
-        }
-
-        .social-btn:hover {
-            background: var(--primary);
-            transform: scale(1.2) rotate(10deg);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        /* 背景装饰球 */
-        .bg-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.4;
-            pointer-events: none;
-            transition: transform 0.2s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
 
-    <!-- 背景装饰 -->
+    <!-- Background Decoration -->
     <div class="bg-orb" style="top: 10%; left: 10%; width: 300px; height: 300px; background: var(--primary);"></div>
     <div class="bg-orb" style="bottom: 20%; right: 5%; width: 400px; height: 400px; background: var(--secondary);"></div>
     <div class="bg-orb" style="top: 40%; right: 30%; width: 200px; height: 200px; background: var(--accent);"></div>
@@ -499,18 +18,29 @@
     <nav>
         <div class="logo">Portfolio</div>
         <div class="nav-links">
-            <a href="#hero">首页</a>
-            <a href="#about">关于我</a>
-            <a href="#showcase">作品</a>
-            <a href="#contact">联系</a>
+            <a href="index.html">Home</a>
+            <a href="https://github.com/NeonAngelThreads">Github</a>
+            <a href="projects.html">Projects</a>
+            <a href="hometown.html">Hometown</a>
+            <a href="settings.html">Settings</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <section id="hero" class="hero">
         <div class="hero-content">
-            <h1 class="reveal">Hello, I'm <br><span>Creative Developer</span></h1>
-            <p class="reveal">A collage student who passionates creating useful things with programming power.</p>
-            <a href="#showcase" class="btn reveal">浏览作品</a>
+            <h1 class="reveal">Hello, I'm <br><span><span id="typewriter">Creative Developer</span><span class="cursor"></span></span></h1>
+            <p class="reveal">A college student who is passionate about creating useful things with programming power.</p>
+            <a href="projects.html" class="btn reveal">View Projects</a>
+        </div>
+
+        <div class="card reveal profile-card">
+            <img src="static/avatar/222498847.jpg" alt="NeonAngelThreads Avatar" class="profile-avatar">
+            <h2 class="profile-name">NeonAngelThreads</h2>
+            <h3 class="profile-title">Azure <span>Explorer</span></h3>
+            <p class="profile-quote">
+                Exploring the unknown blue, weaving dreams through code.
+            </p>
         </div>
     </section>
 
@@ -518,36 +48,36 @@
         <h2 class="section-title reveal">About Me</h2>
         <div class="about-grid">
             <div class="card reveal about-text">
-                <h3>设计与代码的融合者</h3>
-                <p>我从11岁开始编程，热爱创造web黑科技，熟练运用 Java, Python 以及前端 WebGL, React 技术。</p>
-                <p>在软件工程领域，我不仅仅是一个热爱代码和技术的学生，更是一个追求美感的自由创造者。我热衷于现代Web技术，如网页制作，后端API开发，后端集群架构</p>
-                <p>我相信好的软件不仅要快，还要美，更要有灵魂。每一个动效，每一个阴影，都是我对完美的执着。</p>
-                <a href="#contact" style="color: var(--accent); text-decoration: none; font-weight: bold;">了解更多 -></a>
+                <h3>Fusion of Design and Code</h3>
+                <p>I started programming at age 11, love creating web "black magic," and am proficient in Java, Python, and frontend technologies like WebGL and React.</p>
+                <p>In the field of software engineering, I am not just a student who loves code and technology, but also a free creator pursuing aesthetic beauty. I am passionate about modern Web technologies such as web development, backend API development, and backend cluster architecture.</p>
+                <p>I believe good software should not only be fast but also beautiful and soulful. Every animation, every shadow, is part of my dedication to perfection.</p>
+                <a href="#https://github.com/NeonAngelThreads" style="color: var(--accent); text-decoration: none; font-weight: bold;">Learn More -></a>
             </div>
 
             <div class="card reveal about-text">
-                <h3>编程语言 (Proficient)：</h3>
+                <h3>Programming Languages (Proficient):</h3>
                 <div class="card stat-card reveal" style="transition-delay: 0.1s;">
                     <div class="stat-number">Python</div>
-                    <p>熟练掌握常用库: Requests, Selenium自动化框架, Flask, Wedit, Pygame游戏框架, Tkinter, Django后端框架, abc 抽象基类，Pyinstaller和Nuitka打包器。了解少许Numpy</p>
+                    <p>Proficient in common libraries: Requests, Selenium automation framework, Flask, Wedit, Pygame game framework, Tkinter, Django backend framework, abc abstract base classes, Pyinstaller, and Nuitka bundlers. Basic knowledge of Numpy.</p>
                 </div>
 
                 <div class="card stat-card reveal" style="transition-delay: 0.1s;">
                     <div class="stat-number">Java</div>
-                    <p>熟练掌握面向对象设计(面向接口式编程，抽象类，反射) ，以及常用库，如Stream API, Socket, Slf4j, AWT, Swing, JavaFX, GSON, Spring Boot</p>
+                    <p>Proficient in Object-Oriented Design (Interface-oriented programming, abstract classes, reflection), and common libraries such as Stream API, Socket, Slf4j, AWT, Swing, JavaFX, GSON, Spring Boot.</p>
                 </div>
             </div>
             <div class="card reveal about-text">
-                <h3>研究兴趣与自学</h3>
-                <p>主要兴趣方向：
-                    网络安全，API设计， 分布式集群架构， 网络编程，python自动化
+                <h3>Research Interests & Self-study</h3>
+                <p>Main interest directions:
+                    Network Security, API Design, Distributed Cluster Architecture, Network Programming, Python Automation.
                 </p>
             </div>
             <br>
             <div class="stats-container">
                 <div class="card stat-card reveal" style="transition-delay: 0.1s;">
                     <div class="stat-number">5+</div>
-                    <div>开源项目</div>
+                    <div>Open Source Projects</div>
                 </div>
                 <div class="card stat-card reveal" style="transition-delay: 0.2s;">
                     <div class="stat-number">50+</div>
@@ -559,19 +89,19 @@
                 </div>
                 <div class="card stat-card reveal" style="transition-delay: 0.4s;">
                     <div class="stat-number">∞</div>
-                    <div>创意无限</div>
+                    <div>Infinite Creativity</div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="showcase" class="section">
-        <h2 class="section-title reveal">精选作品</h2>
+        <h2 class="section-title reveal">Featured Works</h2>
         <div class="projects-grid">
             <div class="card project-card reveal">
                 <div>
                     <h3 class="project-title"><i class="fas fa-rocket"></i> AzureCanvas</h3>
-                    <p class="project-desc">一个现代、趣味性、精美的校园idea分享论坛。</p>
+                    <p class="project-desc">A modern, fun, and beautiful campus idea sharing forum.</p>
                 </div>
                 <div class="tags">
                     <span class="tag">Canvas</span>
@@ -584,7 +114,7 @@
             <div class="card project-card reveal" style="transition-delay: 0.2s;">
                 <div>
                     <h3 class="project-title"><i class="fas fa-gamepad"></i> DolphinBot</h3>
-                    <p class="project-desc">基于游戏《Minecraft》的高性能、高稳定性、高可扩展自动化机器人框架</p>
+                    <p class="project-desc">A high-performance, high-stability, and highly extensible automation robot framework based on the game "Minecraft".</p>
                 </div>
                 <div class="tags">
                     <span class="tag">Java</span>
@@ -595,11 +125,11 @@
             <div class="card project-card reveal" style="transition-delay: 0.4s;">
                 <div>
                     <h3 class="project-title"><i class="fas fa-chart-line"></i>AngelLogics</h3>
-                    <p class="project-desc">一个简单的CNF布尔表达式构造器、解析器。</p>
+                    <p class="project-desc">A simple CNF boolean expression constructor and parser.</p>
                 </div>
                 <div class="tags">
                     <span class="tag">Python</span>
-                    <span class="tag">abc抽象基类</span>
+                    <span class="tag">abc abstract base classes</span>
                 </div>
             </div>
         </div>
@@ -637,201 +167,7 @@
         </div>
     </footer>
 
-    <script>
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-
-            const orbs = document.querySelectorAll('.bg-orb');
-
-            orbs[0].style.transform = `translate(${x * 370}px, ${y * 380}px)`;
-            orbs[1].style.transform = `translate(${-x * 330}px, ${-y * 430}px)`;
-            orbs[2].style.transform = `translate(${x * 390}px, ${y * 403}px)`;
-            orbs[3].style.transform = `translate(${-x * 330}px, ${y * 303}px)`;
-
-        });
-
-        // Hero 区域粉色文字随鼠标移动改变渐变方向
-        document.addEventListener('mousemove', (e) => {
-            const text = document.querySelector('.hero-content h1 span');
-            if (!text) return;
-            
-            // 计算鼠标相对于屏幕中心的角度
-            const mouseX = e.clientX;
-            
-            // 应用渐变方向
-            text.style.background = `to right, var(--secondary), 10%,var(--primary), 70%, var(--secondary))`;
-            text.style.webkitBackgroundClip = 'text';
-            text.style.backgroundClip = 'text';
-            text.style.webkitTextFillColor = 'transparent';
-        });
-
-        const turbineWrapper = document.querySelector('.turbine-wrapper');
-        //const container = document.querySelector('.turbine-container');
-        
-        // 叶片配置
-        const bladeConfig = {
-            count: 115, // 同时存在的叶片数量
-            speed: 0.01, // 旋转速度
-            growthRate: 0.7, // 生长速度
-            colors: ['#5d0caf', '#7329c0', '#823cc4', '#9254da',
-                '#a268e1', '#bb8eec', '#d6b4f1', '#ead6ff'],
-            minSize: 40,
-            maxSize: 120
-        };
-        
-        // 叶片数组
-        let blades = [];
-        let animationId = null;
-        let time = 0;
-
-        let angle = 0;
-        
-        // 生成漩涡轨迹点
-        function getSpiralPosition(index, total, radius) {
-            const angle = (index / total) * Math.PI * 3;
-            const spiralRadius = radius * (index / total);
-            const x = Math.cos(angle) * spiralRadius;
-            const y = Math.sin(angle) * spiralRadius;
-            return { x, y, angle };
-        }
-        
-        // 创建叶片
-        function createBlade(x, y) {
-            const blade = document.createElement('div');
-            blade.className = 'turbine-blade';
-            
-            // 随机初始参数
-            const size = bladeConfig.minSize + Math.random() * (bladeConfig.maxSize - bladeConfig.minSize);
-            const color = bladeConfig.colors[Math.floor(Math.random() * bladeConfig.colors.length)];
-            
-            blade.style.width = size + 'px';
-            blade.style.height = size + 'px';
-            blade.style.background = color;
-            blade.style.opacity = '0.8';
-            
-            // 初始位置（漩涡中心）
-            blade.style.transform = 'translate(100%, -50%) scale(0.01)';
-            
-            turbineWrapper.appendChild(blade);
-
-
-            return {
-                element: blade,
-                size: size,
-                maxSize: size * 1.5,
-                currentSize: 0,
-                position: 0, // 0-1之间的位置
-                speed: bladeConfig.speed * (0.8 + Math.random() * 0.4),
-                opacity: 0.3
-            };
-        }
-
-        function getAverageOpacity(opacitySum){
-            return opacitySum / bladeConfig.count;
-        }
-        
-        // 动画循环
-        function animate() {
-            time += 0.01;
-            
-            // 定期创建新叶片
-            if (blades.length < bladeConfig.count) {
-                blades.push(createBlade());
-            }
-
-            let opacities = bladeConfig.count;
-            
-            // 更新叶片位置
-            blades.forEach((blade, index) => {
-                blade.position += blade.speed/2;
-
-                // 计算漩涡轨迹位置
-                const spiral = getSpiralPosition(index, bladeConfig.count, 350);
-                const x = spiral.x;
-                const y = spiral.y;
-                angle = spiral.angle + time * 60;
-                
-                // 生长动画
-                blade.currentSize = Math.min(blade.maxSize, blade.currentSize + bladeConfig.growthRate);
-                
-                // 位置和旋转
-                blade.element.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${angle}deg) scale(${blade.currentSize / blade.size})`;
-                opacities += blade.opacity;
-                // 淡出效果
-                blade.opacity = Math.max(0, 1 - blade.position);
-                blade.element.style.opacity = blade.opacity;
-            });
-
-            if (getAverageOpacity(opacities) < 0.5){
-                blades.forEach(blade => {
-                    blade.speed /= 2;
-                });
-            }
-
-            // 移除超出范围的叶片
-            blades = blades.filter(blade => {
-                if (blade.position > 1 || blade.opacity < 0) {
-                    if (blade.element.parentNode) {
-                        blade.element.parentNode.removeChild(blade.element);
-                    }
-                    return false;
-                }
-                return true;
-            });
-            
-            animationId = requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        let isHovering = false;
-
-        turbineWrapper.addEventListener('mousemove', () => {
-            isHovering = true;
-            time -= 0.1;
-
-            blades.forEach(blade => {
-                blade.speed /= 2;
-                //blade.style.transition = "all 0.5s ease"
-            });
-        });
-
-        turbineWrapper.addEventListener('click', () => {
-            isHovering = true;
-            time -= 0.1;
-
-            blades.forEach(blade => {
-                blade.speed /= 2;
-                blade.transform = 'translate(0%,0%)';
-            });
-        });
-        
-        turbineWrapper.addEventListener('mouseleave', () => {
-            isHovering = false;
-            blades.forEach(blade => {
-                blade.speed *= 2;
-            });
-        });
-
-    </script>
+    <script src="static/js/common.js"></script>
+    <script src="static/js/index.js"></script>
 </body>
 </html>

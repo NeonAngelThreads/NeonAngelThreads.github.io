@@ -1,0 +1,217 @@
+/* Projects Page Specific Styles */
+
+@font-face {
+    font-family: 'Aeonik-Medium';
+    src: url('../fonts/Aeonik-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+:root {
+    --card-width: 280px;
+    --card-height: 420px;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+    background: radial-gradient(circle at center, #2a0a3d 0%, var(--dark) 100%);
+}
+
+/* 滚动容器 */
+.scroll-container {
+    height: 500vh; /* 极长的滚动空间来驱动动画 */
+    view-timeline-name: --main-scroll;
+}
+
+/* 固定定位的展示区 */
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+    overflow: hidden;
+}
+
+header {
+    position: absolute;
+    top: 15vh;
+    text-align: center;
+    z-index: 10;
+    /* 随着滚动淡出 */
+    animation: fade-out linear both;
+    animation-timeline: --main-scroll;
+    animation-range: exit 0% exit 20%;
+}
+
+@keyframes fade-out {
+    to { opacity: 0; transform: translateY(-50px); }
+}
+
+h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+/* 卡牌组容器 */
+.cards-deck {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    transform-style: preserve-3d;
+}
+
+.card-3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--card-width);
+    height: var(--card-height);
+    transform-style: preserve-3d;
+    animation-timeline: --main-scroll;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+}
+
+.card-wave-wrapper {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+.card-1 { animation-name: flip-1; }
+.card-2 { animation-name: flip-2; }
+.card-3 { animation-name: flip-3; }
+.card-4 { animation-name: flip-4; }
+.card-5 { animation-name: flip-5; }
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card-front {
+    background: #fff;
+    color: #000;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Aeonik-Medium', sans-serif;
+}
+
+.card-front h2 {
+    font-family: 'Aeonik-Medium', sans-serif;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.card-front .tags p {
+    font-family: 'Aeonik-Medium', sans-serif;
+}
+
+.card-front .tags {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-image: url('../cards/card.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #0047ff;
+}
+
+/* --- Scroll Driven Animations --- */
+.card-3d {
+    animation-range: entry 20% cover 80%;
+}
+
+@keyframes flip-1 {
+    0% { transform: translateY(100vh) translateZ(0) rotateY(180deg) rotateX(20deg); opacity: 0; }
+    30% { transform: translateY(0) translateZ(0) rotateY(180deg) rotateX(0deg); opacity: 1; }
+    60% { transform: translateX(-450px) rotateY(180deg) rotateX(10deg) rotateZ(-5deg); }
+    80%, 100% { transform: translateX(-450px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+}
+@keyframes flip-2 {
+    0% { transform: translateY(100vh) translateZ(2px) rotateY(180deg) rotateX(20deg); opacity: 0; }
+    30% { transform: translateY(0) translateZ(2px) rotateY(180deg) rotateX(0deg); opacity: 1; }
+    60% { transform: translateX(-225px) rotateY(180deg) rotateX(10deg) rotateZ(-2.5deg); }
+    85%, 100% { transform: translateX(-225px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+}
+@keyframes flip-3 {
+    0% { transform: translateY(100vh) translateZ(4px) rotateY(180deg) rotateX(20deg); opacity: 0; }
+    30% { transform: translateY(0) translateZ(4px) rotateY(180deg) rotateX(0deg); opacity: 1; }
+    60% { transform: translateX(0px) rotateY(180deg) rotateX(10deg) rotateZ(0deg); }
+    90%, 100% { transform: translateX(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+}
+@keyframes flip-4 {
+    0% { transform: translateY(100vh) translateZ(6px) rotateY(180deg) rotateX(20deg); opacity: 0; }
+    30% { transform: translateY(0) translateZ(6px) rotateY(180deg) rotateX(0deg); opacity: 1; }
+    60% { transform: translateX(225px) rotateY(180deg) rotateX(10deg) rotateZ(2.5deg); }
+    95%, 100% { transform: translateX(225px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+}
+@keyframes flip-5 {
+    0% { transform: translateY(100vh) translateZ(8px) rotateY(180deg) rotateX(20deg); opacity: 0; }
+    30% { transform: translateY(0) translateZ(8px) rotateY(180deg) rotateX(0deg); opacity: 1; }
+    60% { transform: translateX(450px) rotateY(180deg) rotateX(10deg) rotateZ(5deg); }
+    100% { transform: translateX(450px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(18, 0, 36, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.5;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+    .card-1 { --tx: -350px; }
+    .card-2 { --tx: -175px; }
+    .card-4 { --tx: 175px; }
+    .card-5 { --tx: 350px; }
+}
+
+@media (max-width: 768px) {
+    .sticky-wrapper { transform: scale(0.6); }
+}

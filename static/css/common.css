@@ -1,0 +1,163 @@
+:root {
+    --primary: #FF0080;
+    --secondary: #7928CA;
+    --accent: #46c5ff;
+    --dark: #120024;
+    --darker: #004dc0;
+    --text: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, var(--dark) 0%, #2a0a3d 40%, #1a0525 70%, var(--darker) 100%);
+    color: var(--text);
+    overflow-x: clip;
+    min-height: 100vh;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary), var(--secondary));
+    border-radius: 4px;
+}
+
+/* 导航栏 */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(18, 0, 36, 0.5);
+    border-bottom: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 通用动画类 */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 玻璃卡片通用样式 */
+.card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow);
+    transition: transform 0.1s ease-out, box-shadow 0.4s ease, border-color 0.4s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 30px rgba(70, 197, 255, 0.3), 
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* 背景装饰球 */
+.bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.4;
+    pointer-events: none;
+    transition: transform 0.2s ease-out;
+}
+
+/* 打字机光标 */
+.cursor {
+    display: inline-block;
+    width: 40px;
+    height: 10px;
+    background: #ffffff;
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+    box-shadow: 0 0 8px var(--primary);
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes color_shift {
+    from  { background-color: green; }
+    0%, 10% { background-color: #1e052a; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes reverse-spin {
+    0% { transform: translate(-50%, -50%) rotate(360deg); }
+    100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
