@@ -565,6 +565,103 @@
     color: var(--accent);
 }
 
+/* Tech Stacks Section */
+.techstacks-section {
+    padding: 6rem 5%;
+}
+
+.techstacks-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+.techstacks-triangle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+    gap: 1.5rem;
+}
+
+.techstacks-triangle .tech-icon {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateX(200px) scale(0.5);
+    animation-timeline: view();
+    transition: none;
+}
+
+.techstacks-triangle .tech-icon img {
+    width: 170px;
+    height: 170px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(70, 197, 255, 0.3));
+}
+
+.techstacks-triangle .tech-icon.reveal {
+    opacity: 0;
+    transform: translateX(300px) scale(0.3) rotate(20deg);
+    transition: none;
+    animation: none;
+}
+
+.techstacks-triangle .tech-icon.reveal.active {
+    animation: tech-fly-in 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation-delay: calc(var(--delay) * 0.1s);
+}
+
+@keyframes tech-fly-in {
+    0% {
+        opacity: 0;
+        transform: translateX(300px) scale(0.3) rotate(20deg);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateX(-20px) scale(1.1) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0deg);
+    }
+}
+
+.techstacks-triangle .tech-icon:hover {
+    transform: scale(1.15) translateY(-10px);
+    background: aliceblue;
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(70, 197, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.techstacks-triangle .tech-icon.reveal:hover {
+    transform: scale(1.15) translateY(-10px);
+}
+
+@media (max-width: 768px) {
+    .techstacks-triangle {
+        gap: 1rem;
+    }
+    .techstacks-triangle .tech-icon {
+        width: 80px;
+        height: 80px;
+    }
+    .techstacks-triangle .tech-icon img {
+        width: 55px;
+        height: 55px;
+    }
+}
+
 /* Footer & Turbine Animation */
 footer {
     padding: 8rem 0 4rem;
