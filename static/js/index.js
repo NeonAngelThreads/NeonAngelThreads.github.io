@@ -29,6 +29,50 @@ document.addEventListener('DOMContentLoaded', () => {
     if (turbineWrapper) {
         initTurbineAnimation(turbineWrapper);
     }
+
+    // 4. Avatar Card 3D Fly-to-Camera Effect
+    const profileCard = document.querySelector('.profile-card');
+    const transitionOverlay = document.getElementById('transition-overlay');
+
+    if (profileCard && transitionOverlay) {
+        // Click to trigger animation and redirect
+        profileCard.addEventListener('click', () => {
+            if (profileCard.classList.contains('flying')) return;
+
+            profileCard.classList.add('flying');
+            
+            // Trigger white-out transition after a short delay
+            setTimeout(() => {
+                transitionOverlay.classList.add('active');
+            }, 400);
+
+            // Redirect to GitHub after animation finishes
+            setTimeout(() => {
+                window.location.href = 'https://github.com/NeonAngelThreads/';
+            }, 1200);
+        });
+    }
+
+    // 5. Highlight Project Card Spiral Fly-in
+    const highlightCard = document.getElementById('azure-canvas-highlight');
+    if (highlightCard && transitionOverlay) {
+        highlightCard.addEventListener('click', () => {
+            if (highlightCard.classList.contains('spiraling')) return;
+
+            highlightCard.classList.add('spiraling');
+
+            // Trigger white-out transition after a short delay
+            setTimeout(() => {
+                transitionOverlay.classList.add('active');
+            }, 700);
+
+            // Redirect after animation
+            setTimeout(() => {
+                // Assuming redirect to the project's specific repo
+                window.location.href = 'https://github.com/NeonAngelThreads/AzureCanvas';
+            }, 1500);
+        });
+    }
 });
 
 /**

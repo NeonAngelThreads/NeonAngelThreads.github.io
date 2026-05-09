@@ -6,24 +6,30 @@
     <title>Creative Portfolio</title>
     <link rel="stylesheet" href="static/css/common.css">
     <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/cards.css">
+    <link rel="stylesheet" href="static/css/orbs.css">
+
 </head>
 <body>
 
+    <!-- White-out Transition Overlay -->
+    <div id="transition-overlay"></div>
+
     <!-- Background Decoration -->
-    <div class="bg-orb" style="top: 10%; left: 10%; width: 300px; height: 300px; background: var(--primary);"></div>
-    <div class="bg-orb" style="bottom: 20%; right: 5%; width: 400px; height: 400px; background: var(--secondary);"></div>
-    <div class="bg-orb" style="top: 40%; right: 30%; width: 200px; height: 200px; background: var(--accent);"></div>
-    <div class="bg-orb" style="top: 50%; left: 40%; width: 200px; height: 200px; background: #033eff;"></div>
+    <div class="bg-orb" id="orb3"></div>
+    <div class="bg-orb" id="orb4"></div>
+    <div class="bg-orb" id="orb5"></div>
+    <div class="bg-orb" id="orb6"></div>
 
     <nav>
-        <div class="logo">Portfolio</div>
+        <div class="logo">Lotiyu's Portfolio</div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="https://github.com/NeonAngelThreads">Github</a>
+            <a href="#about">About</a>
             <a href="projects.html">Projects</a>
             <a href="hometown.html">Hometown</a>
             <a href="settings.html">Settings</a>
-            <a href="#contact">Contact</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
@@ -31,65 +37,86 @@
         <div class="hero-content">
             <h1 class="reveal">Hello, I'm <br><span><span id="typewriter">Creative Developer</span><span class="cursor"></span></span></h1>
             <p class="reveal">A college student who is passionate about creating useful things with programming power.</p>
-            <a href="projects.html" class="btn reveal">View Projects</a>
+            <div class="hero-cta">
+                <a href="projects.html" class="btn reveal">View My Skills</a>
+            </div>
         </div>
+    </section>
 
-        <div class="card reveal profile-card">
-            <img src="static/avatar/222498847.jpg" alt="NeonAngelThreads Avatar" class="profile-avatar">
-            <h2 class="profile-name">NeonAngelThreads</h2>
-            <h3 class="profile-title">Azure <span>Explorer</span></h3>
-            <p class="profile-quote">
-                Exploring the unknown blue, weaving dreams through code.
-            </p>
+    <!-- Featured Project Section -->
+    <section id="featured" class="section featured-section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Featured Project</h2>
+            <p class="section-subtitle">A modern, fun, and beautiful campus idea sharing forum</p>
+        </div>
+        <div class="featured-card-container reveal">
+            <div class="card highlight-card" id="azure-canvas-highlight">
+                <div class="highlight-badge">Featured Project</div>
+                <img src="projects/Screenshot 2026-05-08 002338.jpg" alt="AzureCanvas Highlight" class="highlight-img">
+                <div class="highlight-info">
+                    <h4>AzureCanvas</h4>
+                    <p>Modern Idea Sharing Forum</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="about" class="section">
         <h2 class="section-title reveal">About Me</h2>
-        <div class="about-grid">
-            <div class="card reveal about-text">
-                <h3>Fusion of Design and Code</h3>
-                <p>I started programming at age 11, love creating web "black magic," and am proficient in Java, Python, and frontend technologies like WebGL and React.</p>
-                <p>In the field of software engineering, I am not just a student who loves code and technology, but also a free creator pursuing aesthetic beauty. I am passionate about modern Web technologies such as web development, backend API development, and backend cluster architecture.</p>
-                <p>I believe good software should not only be fast but also beautiful and soulful. Every animation, every shadow, is part of my dedication to perfection.</p>
-                <a href="#https://github.com/NeonAngelThreads" style="color: var(--accent); text-decoration: none; font-weight: bold;">Learn More -></a>
+        <div class="about-container">
+            <!-- Journey Block -->
+            <div class="card reveal about-block journey">
+                <div class="block-icon"><i class="fas fa-rocket"></i></div>
+                <h3>My Journey</h3>
+                <p>I started programming at age 11, driven by a curiosity for how things work. What began as simple scripts has evolved into a passion for creating complex, aesthetic, and high-performance digital experiences.</p>
+                <p>Today, I balance my studies with deep dives into modern web architecture and backend systems.</p>
             </div>
 
-            <div class="card reveal about-text">
-                <h3>Programming Languages (Proficient):</h3>
-                <div class="card stat-card reveal" style="transition-delay: 0.1s;">
-                    <div class="stat-number">Python</div>
-                    <p>Proficient in common libraries: Requests, Selenium automation framework, Flask, Wedit, Pygame game framework, Tkinter, Django backend framework, abc abstract base classes, Pyinstaller, and Nuitka bundlers. Basic knowledge of Numpy.</p>
+            <!-- Expertise Block -->
+            <div class="card reveal about-block expertise">
+                <div class="block-icon"><i class="fas fa-code"></i></div>
+                <h3>Technical Arsenal</h3>
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <span class="skill-name">Python</span>
+                        <p>Flask, Django, Automation, abc, Nuitka</p>
+                    </div>
+                    <div class="expertise-item">
+                        <span class="skill-name">Java</span>
+                        <p>Spring Boot, JavaFX, Socket, Stream API</p>
+                    </div>
+                    <div class="expertise-item">
+                        <span class="skill-name">Frontend</span>
+                        <p>WebGL, React, Tailwind, Scroll-Driven Animations</p>
+                    </div>
                 </div>
+            </div>
 
-                <div class="card stat-card reveal" style="transition-delay: 0.1s;">
-                    <div class="stat-number">Java</div>
-                    <p>Proficient in Object-Oriented Design (Interface-oriented programming, abstract classes, reflection), and common libraries such as Stream API, Socket, Slf4j, AWT, Swing, JavaFX, GSON, Spring Boot.</p>
-                </div>
+            <!-- Interests Block -->
+            <div class="card reveal about-block interests">
+                <div class="block-icon"><i class="fas fa-microchip"></i></div>
+                <h3>Research & Interests</h3>
+                <p>I'm constantly exploring the boundaries of technology, with a particular focus on <strong>Network Security</strong>, <strong>Distributed Systems</strong>, and <strong>Modern API Design</strong>.</p>
+                <p>I believe that every piece of software should have a soul—a perfect blend of speed and beauty.</p>
             </div>
-            <div class="card reveal about-text">
-                <h3>Research Interests & Self-study</h3>
-                <p>Main interest directions:
-                    Network Security, API Design, Distributed Cluster Architecture, Network Programming, Python Automation.
-                </p>
-            </div>
-            <br>
-            <div class="stats-container">
-                <div class="card stat-card reveal" style="transition-delay: 0.1s;">
-                    <div class="stat-number">5+</div>
-                    <div>Open Source Projects</div>
+
+            <!-- Stats Block -->
+            <div class="stats-grid-modern">
+                <div class="card stat-item reveal">
+                    <span class="stat-num">5+</span>
+                    <span class="stat-label">OSS Projects</span>
                 </div>
-                <div class="card stat-card reveal" style="transition-delay: 0.2s;">
-                    <div class="stat-number">50+</div>
-                    <div>Stars</div>
+                <div class="card stat-item reveal">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label">Stars</span>
                 </div>
-                <div class="card stat-card reveal" style="transition-delay: 0.3s;">
-                    <div class="stat-number">3.24</div>
-                    <div>GPA</div>
+                <div class="card stat-item reveal">
+                    <span class="stat-num">3.24</span>
+                    <span class="stat-label">GPA</span>
                 </div>
-                <div class="card stat-card reveal" style="transition-delay: 0.4s;">
-                    <div class="stat-number">∞</div>
-                    <div>Infinite Creativity</div>
+                <div class="card stat-item reveal">
+                    <span class="stat-num">∞</span>
+                    <span class="stat-label">Creativity</span>
                 </div>
             </div>
         </div>
@@ -111,7 +138,7 @@
                     <span class="tag"></span>
                 </div>
             </div>
-            <div class="card project-card reveal" style="transition-delay: 0.2s;">
+            <div class="card project-card reveal"  id="card1">
                 <div>
                     <h3 class="project-title"><i class="fas fa-gamepad"></i> DolphinBot</h3>
                     <p class="project-desc">A high-performance, high-stability, and highly extensible automation robot framework based on the game "Minecraft".</p>
@@ -122,7 +149,7 @@
                     <span class="tag">MySQL</span>
                 </div>
             </div>
-            <div class="card project-card reveal" style="transition-delay: 0.4s;">
+            <div class="card project-card reveal" id="card2">
                 <div>
                     <h3 class="project-title"><i class="fas fa-chart-line"></i>AngelLogics</h3>
                     <p class="project-desc">A simple CNF boolean expression constructor and parser.</p>
@@ -138,30 +165,35 @@
     <footer id="contact">
         <div class="footer-content reveal">
             <h2>Let's Create Something Amazing</h2>
-            <p style="color: rgba(255,255,255,0.6);">Available for freelance opportunities</p>
+            <p id="footertitle">Available for freelance opportunities</p>
             
             <!-- 核心：漩涡涡轮动画 -->
             <div class="turbine-container">
                 <!-- 外围旋转圈 -->
                 <div class="outer-ring"></div>
-                
-                <!-- 旋转的叶片组 -->
                 <div class="turbine-wrapper"></div>
-
-                <!-- 中心头像 -->
                 <div class="avatar-box">
                     <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Avatar">
                 </div>
             </div>
 
+            <div class="card reveal profile-card">
+                <img src="static/avatar/222498847.jpg" alt="NeonAngelThreads Avatar" class="profile-avatar">
+                <h2 class="profile-name">NeonAngelThreads</h2>
+                <h3 class="profile-title">Azure <span>Explorer</span></h3>
+                <p class="profile-quote">
+                    Exploring the unknown blue, weaving dreams through code.
+                </p>
+            </div>
+
             <div class="social-links">
-                <a href="#" class="social-btn"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/NeonAngelThreads" class="social-btn">Github</a>
                 <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-dribbble"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-btn">BiliBili</a>
+                <a href="https://www.linkedin.com/in/mo-yuzhen/" class="social-btn">LinkedIn</a>
             </div>
             
-            <p style="margin-top: 3rem; font-size: 1.4rem; color: rgba(255,255,255,0.3);">
+            <p id="footertext">
                 © 2026 Designed & Built with ❤️
             </p>
         </div>

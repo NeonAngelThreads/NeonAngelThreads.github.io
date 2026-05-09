@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Lotiyu's Portfolio</title>
+    <link rel="stylesheet" href="static/css/common.css">
+    <link rel="stylesheet" href="static/css/contact.css">
+    <link rel="stylesheet" href="static/css/orbs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- White-out Transition Overlay -->
+    <div id="transition-overlay"></div>
+
+    <!-- Background Decoration -->
+    <div id="bg-orb1" class="bg-orb"></div>
+    <div id="bg-orb2" class="bg-orb"></div>
+    <div id="bg-orb3" class="bg-orb"></div>
+
+    <nav>
+        <div class="logo">Lotiyu's Portfolio</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="hometown.html">Hometown</a>
+            <a href="settings.html">Settings</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="contact-hero">
+        <div class="contact-content reveal">
+            <h1 class="glitch-text" data-text="Get In Touch">Get In Touch</h1>
+            <p>Have a question or want to work together? Drop me a message through the encrypted uplink below.</p>
+            
+            <button class="btn pulse-btn" id="open-terminal">
+                <i class="fas fa-paper-plane"></i> Initiate Uplink
+            </button>
+
+            <div class="social-uplinks">
+                <a href="https://github.com/NeonAngelThreads/" target="_blank" class="uplink-item">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="uplink-item">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                <a href="#" class="uplink-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Liquid Glass Dialog -->
+    <div class="dialog-overlay" id="contact-dialog">
+        <div class="liquid-glass-card">
+            <div class="liquid-bg">
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+            </div>
+            
+            <div class="card-content">
+                <div class="dialog-header">
+                    <h3><i class="fas fa-satellite-dish"></i> Secure Message Portal</h3>
+                    <button class="close-btn" id="close-dialog">&times;</button>
+                </div>
+                
+                <form id="contact-form">
+                    <div class="input-group">
+                        <label>Identity / Name</label>
+                        <label for="sender-name">Your Name</label>
+                        <input type="text" id="sender-name" placeholder="Who are you?" required>
+                        <div class="input-focus-border"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Return Frequency / Email</label>
+                        <label for="sender-email">Your Email</label>
+                        <input type="email" id="sender-email" placeholder="Where should I reply?" required>
+                        <div class="input-focus-border"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Payload / Message</label>
+                        <label for="message-body">Message</label>
+                        <textarea id="message-body" rows="5" placeholder="Enter your data..." required></textarea>
+                        <div class="input-focus-border"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Transmit Data</span>
+                        <div class="btn-loader"></div>
+                    </button>
+                </form>
+
+                <div id="success-feedback" class="feedback-msg hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Data Transmitted</h4>
+                    <p>Message successfully beamed to the mothership.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/common.js"></script>
+    <script src="static/js/contact.js"></script>
+</body>
+</html>

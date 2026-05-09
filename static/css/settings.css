@@ -20,3 +20,7 @@ input[type="range"] { width: 100%; accent-color: var(--primary); }
     display: inline-flex;
     align-items: center;
 }
+
+#sectiontext {
+    font-size: 3rem; margin-bottom: 3rem;
+}

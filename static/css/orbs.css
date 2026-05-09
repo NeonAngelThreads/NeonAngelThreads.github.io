@@ -1,0 +1,31 @@
+#orb1 {
+    top: 10%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+}
+
+#orb2{
+    bottom: 20%;
+    right: 5%;
+    width: 400px;
+    height: 400px;
+    background: var(--secondary);
+}
+
+#orb3 {
+    top: 10%; left: 10%; width: 300px; height: 300px; background: var(--primary);
+}
+
+#orb4 {
+    bottom: 20%; right: 5%; width: 400px; height: 400px; background: var(--secondary);
+}
+
+#orb5 {
+    top: 40%; right: 30%; width: 200px; height: 200px; background: var(--accent);
+}
+
+#orb6 {
+    top: 50%; left: 40%; width: 200px; height: 200px; background: #033eff;
+}
